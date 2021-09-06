@@ -29,7 +29,15 @@ exports.create = (req,res) => {
 }
 
 exports.findAll = (req,res) => {
-    const name = req.query.name;
+
+    console.log("*********"+req);
+    
+    console.log("*********"+req.params);
+
+    console.log("*********"+req.params.searchWord);
+
+
+    let keyword = req.params.searchWord    
     let condition = { where:{}};
 
     if(keyword){
