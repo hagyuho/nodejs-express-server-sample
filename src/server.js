@@ -1,10 +1,18 @@
 const express = require('express');
+
 const bodyParser = require('body-parser');
+
 const cors = require('cors');
+
+const multer = require('multer');
+//const upload = multer({dest:'/upload'})
 
 const app= express();
 
 const PORT = process.env.PORT || 8080;
+
+global.__basedir = __dirname + "/..";
+
 
 app.use(cors());
 
@@ -24,3 +32,4 @@ const db = require('./app/server/model/index.js');
     app.listen(PORT, () =>{
         console.log(`Server is running on port ${PORT}`);
     })
+

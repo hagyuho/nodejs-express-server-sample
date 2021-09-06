@@ -1,14 +1,18 @@
 const router = require('express').Router();
-const aflist = require('../controller/controller.js');
+const aflistController = require('../controller/ifListController.js');
+const excelController = require('../controller/excelController.js')
+const upload = require("../middlewares/upload")
 
-router.post('/api/aflist',aflist.create);
+router.post('/api/aflist',aflistController.create);
 
-router.get('/api/aflist',aflist.findAll);
+router.get('/api/aflist',aflistController.findAll);
 
-router.get('/api/aflist/:id',aflist.findOne);
+router.get('/api/aflist/:id',aflistController.findOne);
 
-router.put('/api/aflist/:id',aflist.update);
+router.put('/api/aflist/:id',aflistController.update);
 
-router.delete('/api/aflist/:id',aflist.delete);
+router.delete('/api/aflist/:id',aflistController.delete);
+
+router.post('/api/excel/upload', upload.single("file"), excelController.upload);
 
 module.exports = router;
