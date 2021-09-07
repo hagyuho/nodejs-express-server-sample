@@ -30,28 +30,33 @@ exports.create = (req,res) => {
 
 exports.findAll = (req,res) => {
 
-    let keyword = req.params.searchWord    
+    console.log("조회값 확인:" + req.query.searchWord)
+    console.log("조회값 확인:" + req.query.category)
+
+    let category = req.query.category   
+    let keyword = req.query.searchWord
     let condition = { where:{}};
+
 
     if(keyword){
         condition={
             where : {
                 [Op.or]:[
                     {
-                        name:{
+                        [category]:{
                             [Op.like]: `%${keyword}%`
                         }
                     },
-                    {
-                        interest:{
-                            [Op.like]: `%${keyword}%`
-                        }
-                    },
-                    {
-                        retireDday:{
-                            [Op.like]: `%${keyword}%`
-                        }
-                    },
+                    // {
+                    //     interest:{
+                    //         [Op.like]: `%${keyword}%`
+                    //     }
+                    // },
+                    // {
+                    //     retireDday:{
+                    //         [Op.like]: `%${keyword}%`
+                    //     }
+                    // },
                 ]
             }
         }
